@@ -1,0 +1,966 @@
+[
+  {
+    "name": "init.success.empty_inventory",
+    "description": "Omit manifest; tick 0 and empty vessel/dock cargo arrays."
+  },
+  {
+    "name": "init.success.with_manifest",
+    "description": "Manifest populates docks; vessels begin idle with empty cargo."
+  },
+  {
+    "name": "init.success.empty_manifest",
+    "description": "Explicit [] has the same result as an omitted manifest."
+  },
+  {
+    "name": "init.success.merge_duplicates",
+    "description": "Repeated destinations combine quantities without changing first-insertion order."
+  },
+  {
+    "name": "init.success.empty_fleet",
+    "description": "An empty vessel list prints an object, not null or an array."
+  },
+  {
+    "name": "init.error.already_initialized",
+    "description": "Second init is rejected without replacing existing cargo or vessel state."
+  },
+  {
+    "name": "init.error.parameters_not_object",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.missing_matrix",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.matrix_not_array",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.matrix_empty",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.row_not_array",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.matrix_not_square",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.diagonal_nonzero",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.off_diagonal_zero",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.travel_time_negative",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.travel_time_fractional",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.travel_time_boolean",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.travel_time_above_int",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.missing_vessels",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.vessels_not_array",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.vessel_entry_not_object",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.vessel_id_missing",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.vessel_id_not_string",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.duplicate_vessel_id",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.location_missing",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.location_negative",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.location_too_large",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.location_wrong_type",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.throughput_missing",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.throughput_not_array",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.throughput_wrong_length",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.throughput_zero",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.throughput_negative",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.throughput_fractional",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.throughput_boolean",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.throughput_above_int",
+    "description": "Invalid init with a cargo manifest; reject atomically, then permit a valid retry."
+  },
+  {
+    "name": "init.error.manifest_null",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.manifest_object",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.manifest_entry_not_object",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.manifest_missing_location",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.manifest_missing_destination",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.manifest_missing_quantity",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.manifest_location_negative",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.manifest_location_too_large",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.manifest_destination_negative",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.manifest_destination_too_large",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.manifest_location_wrong_type",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.manifest_destination_wrong_type",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.quantity_zero",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.quantity_negative",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.quantity_fractional",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.quantity_boolean",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.quantity_string",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.quantity_above_int64",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.quantity_sum_overflow",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "init.error.valid_then_invalid_entry",
+    "description": "Reject malformed or overflowing cargo; initialization remains retryable."
+  },
+  {
+    "name": "tick.success.empty_inventory",
+    "description": "Advance from tick 0 to 1 with empty cargo arrays."
+  },
+  {
+    "name": "tick.success.add_manifest",
+    "description": "Add cargo at tick 1 without requiring an init manifest."
+  },
+  {
+    "name": "tick.success.commit_loaded_cargo",
+    "description": "Commit a pending load and preserve cargo in the response."
+  },
+  {
+    "name": "tick.success.empty_manifest_preserves_inventory",
+    "description": "An explicit empty manifest adds nothing and deletes nothing."
+  },
+  {
+    "name": "tick.success.exact_arrival_with_cargo",
+    "description": "Remain transit until tick 10, then become idle with cargo intact."
+  },
+  {
+    "name": "tick.success.simultaneous_arrivals",
+    "description": "Process every vessel due at tick 1."
+  },
+  {
+    "name": "tick.success.reset_shared_budget",
+    "description": "A successful tick restores operations spent by either vessel at the dock."
+  },
+  {
+    "name": "tick.error.before_init",
+    "description": "Reject tick before initialization."
+  },
+  {
+    "name": "tick.error.clock_limit",
+    "description": "At INT64_MAX reject the tick and preserve cargo and pending changes."
+  },
+  {
+    "name": "tick.error.parameters_not_object",
+    "description": "Reject scalar parameters before advancing time."
+  },
+  {
+    "name": "tick.error.manifest_null",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.manifest_object",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.manifest_entry_not_object",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.manifest_missing_location",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.manifest_missing_destination",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.manifest_missing_quantity",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.manifest_location_negative",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.manifest_location_too_large",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.manifest_destination_negative",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.manifest_destination_too_large",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.manifest_location_wrong_type",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.manifest_destination_wrong_type",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.quantity_zero",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.quantity_negative",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.quantity_fractional",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.quantity_boolean",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.quantity_string",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.quantity_above_int64",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.quantity_sum_overflow",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "tick.error.valid_then_invalid_entry",
+    "description": "Cargo-bearing fixture: preserve clock, pending load, inventories, queue, and budget."
+  },
+  {
+    "name": "set_destination.success.empty_inventory",
+    "description": "Plan 0-to-1 arrival at tick 4 with empty cargo."
+  },
+  {
+    "name": "set_destination.success.loaded_vessel",
+    "description": "At tick 3, plan 0-to-2 arrival at 10 and retain onboard cargo."
+  },
+  {
+    "name": "set_destination.success.override_pending_trip",
+    "description": "Replace arrival 7 with arrival 4 before tick; discarded trip never arrives."
+  },
+  {
+    "name": "set_destination.success.override_pending_dock",
+    "description": "An idle committed vessel may replace a pending dock with travel."
+  },
+  {
+    "name": "set_destination.success.current_location",
+    "description": "Replace a pending departure with a zero-duration trip, idle next tick."
+  },
+  {
+    "name": "set_destination.error.before_init",
+    "description": "Reject a destination before initialization."
+  },
+  {
+    "name": "set_destination.error.unknown_vessel",
+    "description": "Reject an unknown ID; existing cargo remains unchanged."
+  },
+  {
+    "name": "set_destination.error.missing_id",
+    "description": "Malformed fields return the destination validation error."
+  },
+  {
+    "name": "set_destination.error.id_wrong_type",
+    "description": "Malformed fields return the destination validation error."
+  },
+  {
+    "name": "set_destination.error.missing_destination",
+    "description": "Malformed fields return the destination validation error."
+  },
+  {
+    "name": "set_destination.error.parameters_not_object",
+    "description": "Malformed fields return the destination validation error."
+  },
+  {
+    "name": "set_destination.error.destination_negative",
+    "description": "Reject an invalid destination without losing the existing plan or cargo."
+  },
+  {
+    "name": "set_destination.error.destination_too_large",
+    "description": "Reject an invalid destination without losing the existing plan or cargo."
+  },
+  {
+    "name": "set_destination.error.destination_fractional",
+    "description": "Reject an invalid destination without losing the existing plan or cargo."
+  },
+  {
+    "name": "set_destination.error.destination_boolean",
+    "description": "Reject an invalid destination without losing the existing plan or cargo."
+  },
+  {
+    "name": "set_destination.error.destination_string",
+    "description": "Reject an invalid destination without losing the existing plan or cargo."
+  },
+  {
+    "name": "set_destination.error.destination_huge",
+    "description": "Reject an invalid destination without losing the existing plan or cargo."
+  },
+  {
+    "name": "set_destination.error.committed_transit",
+    "description": "A committed trip cannot be overridden."
+  },
+  {
+    "name": "set_destination.error.committed_docked",
+    "description": "Docked vessels must undock and commit before departure."
+  },
+  {
+    "name": "set_destination.error.pending_undock",
+    "description": "Planned idle is insufficient while committed state is docked."
+  },
+  {
+    "name": "set_destination.error.arrival_overflow",
+    "description": "Reject current tick plus travel time exceeding INT64_MAX."
+  },
+  {
+    "name": "get_state.success.empty_inventory",
+    "description": "Return the exact empty-cargo world without changing state."
+  },
+  {
+    "name": "get_state.success.with_inventory",
+    "description": "Include both vessel cargo and dock inventory."
+  },
+  {
+    "name": "get_state.success.pending_cargo_visible",
+    "description": "Show a pending load immediately while committed cargo is still empty."
+  },
+  {
+    "name": "get_state.success.initialization_order",
+    "description": "Preserve nonalphabetical initialization order and field ordering."
+  },
+  {
+    "name": "get_state.error.before_init",
+    "description": "The only public get_state rejection is a call before initialization."
+  },
+  {
+    "name": "dock.success.empty_inventory",
+    "description": "Plan docking at tick 0 with empty cargo arrays."
+  },
+  {
+    "name": "dock.success.loaded_vessel",
+    "description": "A loaded idle vessel retains cargo when docking."
+  },
+  {
+    "name": "dock.success.override_departure",
+    "description": "A pending trip is replaced by docking and never enters the arrival queue."
+  },
+  {
+    "name": "dock.success.repeat_pending_dock",
+    "description": "Repeated pending docks are idempotent while committed state is idle."
+  },
+  {
+    "name": "undock.success.empty_inventory",
+    "description": "Plan idle after committed docking, retaining empty cargo arrays."
+  },
+  {
+    "name": "undock.success.loaded_vessel",
+    "description": "Keep committed vessel cargo when undocking."
+  },
+  {
+    "name": "undock.success.pending_load_preserved",
+    "description": "Load then undock in the same tick keeps the newly loaded unit."
+  },
+  {
+    "name": "undock.success.repeat_pending_undock",
+    "description": "Repeated pending undocks do not lose cargo or spend throughput."
+  },
+  {
+    "name": "dock.error.before_init",
+    "description": "Reject the command before init."
+  },
+  {
+    "name": "dock.error.unknown_vessel",
+    "description": "Reject an unknown ID in a cargo-bearing world."
+  },
+  {
+    "name": "dock.error.missing_id",
+    "description": "Reject malformed parameters; preserve all cargo and pending state."
+  },
+  {
+    "name": "dock.error.id_wrong_type",
+    "description": "Reject malformed parameters; preserve all cargo and pending state."
+  },
+  {
+    "name": "dock.error.parameters_not_object",
+    "description": "Reject malformed parameters; preserve all cargo and pending state."
+  },
+  {
+    "name": "undock.error.before_init",
+    "description": "Reject the command before init."
+  },
+  {
+    "name": "undock.error.unknown_vessel",
+    "description": "Reject an unknown ID in a cargo-bearing world."
+  },
+  {
+    "name": "undock.error.missing_id",
+    "description": "Reject malformed parameters; preserve all cargo and pending state."
+  },
+  {
+    "name": "undock.error.id_wrong_type",
+    "description": "Reject malformed parameters; preserve all cargo and pending state."
+  },
+  {
+    "name": "undock.error.parameters_not_object",
+    "description": "Reject malformed parameters; preserve all cargo and pending state."
+  },
+  {
+    "name": "dock.error.committed_docked",
+    "description": "Dock requires committed idle, even if already docked."
+  },
+  {
+    "name": "dock.error.committed_transit",
+    "description": "Cannot dock while traveling."
+  },
+  {
+    "name": "dock.error.pending_undock",
+    "description": "Must commit undock before docking again."
+  },
+  {
+    "name": "undock.error.committed_idle",
+    "description": "Cannot undock an idle vessel."
+  },
+  {
+    "name": "undock.error.committed_transit",
+    "description": "Cannot undock while traveling."
+  },
+  {
+    "name": "undock.error.pending_dock",
+    "description": "Must commit a newly requested dock before undocking."
+  },
+  {
+    "name": "load.success.empty_vessel",
+    "description": "Load one unit into an empty vessel; dock quantity decreases by one."
+  },
+  {
+    "name": "load.success.existing_vessel_cargo",
+    "description": "Loading a matching destination increments its quantity instead of duplicating its entry."
+  },
+  {
+    "name": "load.success.last_dock_unit",
+    "description": "Taking the last unit removes the dock's zero-quantity entry."
+  },
+  {
+    "name": "unload.success.last_vessel_unit",
+    "description": "Unload the final unit at a nondestination dock; vessel cargo becomes []."
+  },
+  {
+    "name": "unload.success.other_cargo_remains",
+    "description": "Unload one destination while preserving cargo for another."
+  },
+  {
+    "name": "unload.success.deliver_at_destination",
+    "description": "Cargo unloaded at its own destination disappears instead of entering dock inventory."
+  },
+  {
+    "name": "swap.success.different_destinations",
+    "description": "Exchange one unit in each direction using one operation."
+  },
+  {
+    "name": "swap.success.same_destination",
+    "description": "Exchanging identical cargo preserves inventory and still spends one operation."
+  },
+  {
+    "name": "swap.success.delivery",
+    "description": "The unload half delivers at the current location while the load half succeeds."
+  },
+  {
+    "name": "swap.success.identical_destination_delivery",
+    "description": "When both destinations equal location, vessel quantity stays constant and dock loses one unit."
+  },
+  {
+    "name": "load.success.load_then_unload_cost_two",
+    "description": "A load followed by unload uses two operations even when inventory returns to its initial value."
+  },
+  {
+    "name": "load.error.before_init",
+    "description": "Reject before init; no cargo-bearing state can exist yet."
+  },
+  {
+    "name": "load.error.unknown_vessel",
+    "description": "Unknown ID; existing vessel and dock cargo remain untouched."
+  },
+  {
+    "name": "load.error.missing_id",
+    "description": "Malformed parameters return an error without changing cargo or counters."
+  },
+  {
+    "name": "load.error.id_wrong_type",
+    "description": "Malformed parameters return an error without changing cargo or counters."
+  },
+  {
+    "name": "load.error.parameters_not_object",
+    "description": "Malformed parameters return an error without changing cargo or counters."
+  },
+  {
+    "name": "load.error.committed_idle",
+    "description": "Require both committed and planned state to be docked."
+  },
+  {
+    "name": "load.error.committed_transit",
+    "description": "Require both committed and planned state to be docked."
+  },
+  {
+    "name": "load.error.pending_dock",
+    "description": "Require both committed and planned state to be docked."
+  },
+  {
+    "name": "load.error.pending_undock",
+    "description": "Require both committed and planned state to be docked."
+  },
+  {
+    "name": "load.error.missing_destination",
+    "description": "Missing cargo destination produces a malformed-parameters error."
+  },
+  {
+    "name": "load.error.destination_negative",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "load.error.destination_too_large",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "load.error.destination_fractional",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "load.error.destination_boolean",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "load.error.destination_string",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "load.error.destination_huge",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "load.error.throughput_exhausted",
+    "description": "After four valid swaps, a fifth operation is rejected without changing state."
+  },
+  {
+    "name": "load.error.cargo_missing_at_dock",
+    "description": "Requested load inventory is absent; no budget is spent."
+  },
+  {
+    "name": "load.error.vessel_quantity_overflow",
+    "description": "Seed maximum onboard count; reject loading another unit atomically."
+  },
+  {
+    "name": "unload.error.before_init",
+    "description": "Reject before init; no cargo-bearing state can exist yet."
+  },
+  {
+    "name": "unload.error.unknown_vessel",
+    "description": "Unknown ID; existing vessel and dock cargo remain untouched."
+  },
+  {
+    "name": "unload.error.missing_id",
+    "description": "Malformed parameters return an error without changing cargo or counters."
+  },
+  {
+    "name": "unload.error.id_wrong_type",
+    "description": "Malformed parameters return an error without changing cargo or counters."
+  },
+  {
+    "name": "unload.error.parameters_not_object",
+    "description": "Malformed parameters return an error without changing cargo or counters."
+  },
+  {
+    "name": "unload.error.committed_idle",
+    "description": "Require both committed and planned state to be docked."
+  },
+  {
+    "name": "unload.error.committed_transit",
+    "description": "Require both committed and planned state to be docked."
+  },
+  {
+    "name": "unload.error.pending_dock",
+    "description": "Require both committed and planned state to be docked."
+  },
+  {
+    "name": "unload.error.pending_undock",
+    "description": "Require both committed and planned state to be docked."
+  },
+  {
+    "name": "unload.error.missing_destination",
+    "description": "Missing cargo destination produces a malformed-parameters error."
+  },
+  {
+    "name": "unload.error.destination_negative",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "unload.error.destination_too_large",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "unload.error.destination_fractional",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "unload.error.destination_boolean",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "unload.error.destination_string",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "unload.error.destination_huge",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "unload.error.throughput_exhausted",
+    "description": "After four valid swaps, a fifth operation is rejected without changing state."
+  },
+  {
+    "name": "unload.error.cargo_missing_on_vessel",
+    "description": "Requested unload inventory is absent; swaps also leave their load untouched."
+  },
+  {
+    "name": "unload.error.dock_quantity_overflow",
+    "description": "Seed maximum dock count; reject unloading another unit atomically."
+  },
+  {
+    "name": "swap.error.before_init",
+    "description": "Reject before init; no cargo-bearing state can exist yet."
+  },
+  {
+    "name": "swap.error.unknown_vessel",
+    "description": "Unknown ID; existing vessel and dock cargo remain untouched."
+  },
+  {
+    "name": "swap.error.missing_id",
+    "description": "Malformed parameters return an error without changing cargo or counters."
+  },
+  {
+    "name": "swap.error.id_wrong_type",
+    "description": "Malformed parameters return an error without changing cargo or counters."
+  },
+  {
+    "name": "swap.error.parameters_not_object",
+    "description": "Malformed parameters return an error without changing cargo or counters."
+  },
+  {
+    "name": "swap.error.committed_idle",
+    "description": "Require both committed and planned state to be docked."
+  },
+  {
+    "name": "swap.error.committed_transit",
+    "description": "Require both committed and planned state to be docked."
+  },
+  {
+    "name": "swap.error.pending_dock",
+    "description": "Require both committed and planned state to be docked."
+  },
+  {
+    "name": "swap.error.pending_undock",
+    "description": "Require both committed and planned state to be docked."
+  },
+  {
+    "name": "swap.error.missing_load_destination",
+    "description": "Missing cargo destination produces a malformed-parameters error."
+  },
+  {
+    "name": "swap.error.load_destination_negative",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "swap.error.load_destination_too_large",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "swap.error.load_destination_fractional",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "swap.error.load_destination_boolean",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "swap.error.load_destination_string",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "swap.error.load_destination_huge",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "swap.error.missing_unload_destination",
+    "description": "Missing cargo destination produces a malformed-parameters error."
+  },
+  {
+    "name": "swap.error.unload_destination_negative",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "swap.error.unload_destination_too_large",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "swap.error.unload_destination_fractional",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "swap.error.unload_destination_boolean",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "swap.error.unload_destination_string",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "swap.error.unload_destination_huge",
+    "description": "Invalid cargo destination is rejected before any transfer."
+  },
+  {
+    "name": "swap.error.throughput_exhausted",
+    "description": "After four valid swaps, a fifth operation is rejected without changing state."
+  },
+  {
+    "name": "swap.error.cargo_missing_at_dock",
+    "description": "Requested load inventory is absent; no budget is spent."
+  },
+  {
+    "name": "swap.error.vessel_quantity_overflow",
+    "description": "Seed maximum onboard count; reject loading another unit atomically."
+  },
+  {
+    "name": "swap.error.cargo_missing_on_vessel",
+    "description": "Requested unload inventory is absent; swaps also leave their load untouched."
+  },
+  {
+    "name": "swap.error.dock_quantity_overflow",
+    "description": "Seed maximum dock count; reject unloading another unit atomically."
+  },
+  {
+    "name": "swap.error.unload_cannot_supply_load",
+    "description": "Both sources must exist before a swap; its unload cannot create its load inventory."
+  },
+  {
+    "name": "get_state_at.success.tick_zero_empty",
+    "description": "No manifest: tick 0 contains idle vessels and empty cargo arrays."
+  },
+  {
+    "name": "get_state_at.success.tick_zero_cargo",
+    "description": "An init manifest is included in the tick-0 snapshot."
+  },
+  {
+    "name": "get_state_at.success.empty_cargo_past_and_current",
+    "description": "Without cargo, past transit and current arrival snapshots remain distinct."
+  },
+  {
+    "name": "get_state_at.success.pending_departure_excluded",
+    "description": "Overriding a planned trip leaves tick 0 idle; tick 1 records only the final trip."
+  },
+  {
+    "name": "get_state_at.success.pending_dock_excluded",
+    "description": "A pending dock appears in get_state but not in the current committed snapshot."
+  },
+  {
+    "name": "get_state_at.success.pending_load_excluded",
+    "description": "Loading changes planned inventories; only the next tick records the transfer."
+  },
+  {
+    "name": "get_state_at.success.current_boundary_with_cargo",
+    "description": "At a tick boundary, the current snapshot equals get_state with vessel and dock cargo."
+  },
+  {
+    "name": "get_state_at.success.tick_manifest",
+    "description": "New manifest cargo belongs to its successful tick, not the preceding snapshot."
+  },
+  {
+    "name": "get_state_at.success.independent_return_value",
+    "description": "Editing returned JSON cannot change stored history or the live world."
+  },
+  {
+    "name": "get_state_at.success.arrival_and_delivery",
+    "description": "Past snapshots preserve transit and cargo after the vessel arrives and delivers it."
+  },
+  {
+    "name": "get_state_at.success.failed_tick_no_snapshot",
+    "description": "A rejected manifest creates no snapshot and preserves pending work for a valid tick."
+  },
+  {
+    "name": "get_state_at.success.init_retry",
+    "description": "A failed init records nothing; a valid retry records the correct tick 0."
+  },
+  {
+    "name": "get_state_at.success.second_init_preserves_history",
+    "description": "Rejected reinitialization cannot clear or replace existing snapshots."
+  },
+  {
+    "name": "get_state_at.success.query_preserves_dock_budget",
+    "description": "Reading old snapshots does not restore an exhausted dock's throughput."
+  },
+  {
+    "name": "get_state_at.success.many_ticks",
+    "description": "All 81 snapshots stay correctly indexed after repeated tick advances."
+  },
+  {
+    "name": "get_state_at.error.before_init",
+    "description": "Queries before initialization return an error without changing the engine."
+  },
+  {
+    "name": "get_state_at.error.missing_tick",
+    "description": "Reject missing tick. Preserve cargo, pending work, and history."
+  },
+  {
+    "name": "get_state_at.error.parameters_array",
+    "description": "Reject an array instead of a parameters object. Preserve cargo, pending work, and history."
+  },
+  {
+    "name": "get_state_at.error.parameters_null",
+    "description": "Reject null parameters. Preserve cargo, pending work, and history."
+  },
+  {
+    "name": "get_state_at.error.negative",
+    "description": "Reject tick -1. Preserve cargo, pending work, and history."
+  },
+  {
+    "name": "get_state_at.error.negative_limit",
+    "description": "Reject INT64_MIN without integer wraparound. Preserve cargo, pending work, and history."
+  },
+  {
+    "name": "get_state_at.error.float",
+    "description": "Reject floating-point tick 1.0. Preserve cargo, pending work, and history."
+  },
+  {
+    "name": "get_state_at.error.boolean",
+    "description": "Reject a boolean tick. Preserve cargo, pending work, and history."
+  },
+  {
+    "name": "get_state_at.error.string",
+    "description": "Reject a numeric string tick. Preserve cargo, pending work, and history."
+  },
+  {
+    "name": "get_state_at.error.null_tick",
+    "description": "Reject null tick. Preserve cargo, pending work, and history."
+  },
+  {
+    "name": "get_state_at.error.future",
+    "description": "Reject a tick greater than the current tick. Preserve cargo, pending work, and history."
+  },
+  {
+    "name": "get_state_at.error.huge_unsigned",
+    "description": "Reject UINT64_MAX without integer wraparound. Preserve cargo, pending work, and history."
+  }
+]
